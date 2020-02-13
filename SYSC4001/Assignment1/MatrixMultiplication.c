@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/shm.h>
 
 //Q[i][k] = sum(M[i][j]*N[j][k])
 int main(){
@@ -9,6 +10,8 @@ int main(){
 	int i, j, k;
 	//pid_t pid_children[n]; //Ensure that each child has the same parent
 
+	void *shared_memory = (void *)0;
+	struct shared_use_st *shared_stuff;
 
 	int M[4][4] = {
 	   {10, 20, 30, 40},
@@ -39,6 +42,27 @@ int main(){
 	}
 	printf("]");
 
+	//1) Create shared memory
+	int shmid = shmget((key_t)1234, sizeof(struct shared_use_st), 0666 | IPC_CREAT);
+	//If the create failed
+	if (shmid == -1){
+			fprintf(stderr, "shmget failed\n");
+			exit(EXIT_FAILURE);
+		}
+
+	//2) Enable access to the shared memory
+	shared_memory = shmat(shmid, (void *)0, 0);
+	//If the enabling failed
+	if (shared_memory == (void *)-1){
+			fprintf(stderr, "shmat failed\n");
+			exit(EXIT_FAILURE);
+		}
+
+	//3) Shared memory segment
+	shared_stuff = (struct shared_use_st *) shared_memory;
+
+
+
 
 	//Creating child processes
 	if (fork() == 0){
@@ -64,33 +88,6 @@ int main(){
 		}
 	}
 
-	/*
-
-	//Forking has failed.
-	if (fork() < 0) {
-		perror("Forking has failed");
-		abort();
-
-
-
-	} else if (fork() == 0) {
-		printf("Child with %d process ID from parent %d is running...\n", getpid(), getppid());
-
-		for (i = 0; i < n; ++i) {
-
-			//Deals with one column of the row
-			//eg Q[1][3] = P13
-			for(k = 0; k < n; k++){
-
-				//Deals with one term of the sum
-				//eg j=2: (M[i][2] * N[2][k])
-				for(j = 0; j < n; j++){
-					Q[i][k] += (M[i][j] * N[j][k]);
-				}
-			}
-		}
-	}
-*/
 	sleep(10);
 
 	/*
@@ -115,7 +112,7 @@ int main(){
 	//Should be: Q = [670 710 930 1150
 	//				  175 243 353 463
 	//				  68  144 232 320
-//					  176 316 492 668]
+	//			 	  176 316 492 668]
 	printf("Q = [");
 	for (int a = 0; a < n; a++){
 		for (int b = 0; b < n; b++){
