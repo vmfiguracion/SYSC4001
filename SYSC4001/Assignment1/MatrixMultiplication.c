@@ -41,21 +41,23 @@ int main(){
 
 
 	//Creating child processes
-	for (int childNum = 0; childNum < n; childNum++){
+	if (fork() == 0){
 		//In child process
-		if (fork() == 0){
+		printf("Child process ID (%d) with parent ID (%d)\n", getpid(), getppid());
+		for (i = 0; i < n; ++i){
+
 			//Deals with one column of the row
 			//eg Q[1][3] = P13
+			printf("Row %d \n", i+1);
 			for(k = 0; k < n; k++){
 
 				//Deals with one term of the sum
 				//eg j=2: (M[i][2] * N[2][k])
-				printf("Row %d ", childNum);
+				printf("Column %d: ",k+1);
 				for(j = 0; j < n; j++){
-					Q[childNum][k] += (M[childNum][j] * N[j][k]);
-					printf("%d ", (Q[childNum][k] + 1));
+					Q[i][k] += (M[i][j] * N[j][k]);
 				}
-				printf("\n");
+				printf("%d \n", Q[i][k]);
 
 			}
 
