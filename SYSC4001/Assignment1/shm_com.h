@@ -3,6 +3,6 @@
 #define TEXT_SZ 2048
 
 struct shared_use_st {
-    int written_by_you;
+	int shared_matrix[4][4];
     char some_text[TEXT_SZ];
 };

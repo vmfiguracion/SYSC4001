@@ -3,15 +3,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/shm.h>
+#include "shm_com.h"
+#include <string.h>
 
 //Q[i][k] = sum(M[i][j]*N[j][k])
 int main(){
 	int n = 4;
 	int i, j, k;
-	//pid_t pid_children[n]; //Ensure that each child has the same parent
+	pid_t pid; //Ensure that each child has the same parent
 
 	void *shared_memory = (void *)0;
 	struct shared_use_st *shared_stuff;
+
+	//pid = fork();
 
 	int M[4][4] = {
 	   {10, 20, 30, 40},
@@ -56,19 +60,21 @@ int main(){
 	if (shared_memory == (void *)-1){
 			fprintf(stderr, "shmat failed\n");
 			exit(EXIT_FAILURE);
-		}
+	}
+	printf("Memory attached at %X\n", (int *)shared_memory);
 
 	//3) Shared memory segment
 	shared_stuff = (struct shared_use_st *) shared_memory;
+	shared_stuff->shared_matrix;
 
-
-
+	strncpy(Q, shared_stuff-> shared_matrix, sizeof(Q));
 
 	//Creating child processes
-	if (fork() == 0){
+	for (i = 0; i < n; ++i){
 		//In child process
 		printf("Child process ID (%d) with parent ID (%d)\n", getpid(), getppid());
-		for (i = 0; i < n; ++i){
+
+		if (fork() == 0){
 
 			//Deals with one column of the row
 			//eg Q[1][3] = P13
@@ -84,30 +90,24 @@ int main(){
 				printf("%d \n", Q[i][k]);
 
 			}
-
+			break;
 		}
 	}
 
 	sleep(10);
 
-	/*
-	//Logic
-	for (i = 0; i < n; i++){
-		//Deals with one row of Q at row i
-		//eg Q[1] = [P11, P12, P13, P14]
-		for(k = 0; k < n; k++){
-			//Deals with one column of the row
-			//eg Q[1][3] = P13
-			for(j = 0; j < n; j++){
-				//Deals with one term of the sum
-				//eg j=2: (M[i][2] * N[2][k])
-
-				Q[i][k] += (M[i][j] * N[j][k]);
-			}
-		}
+/*
+	//Shared memory is detached
+	if (shmdt(shared_memory) == -1){
+		fprintf(stderr, "shmdt failed \n");
+		exit(EXIT_FAILURE);
 	}
-	*/
-
+	if (shmctl(shmid, IPC_RMID, 0) == -1){
+		fprintf(stderr, "shmctl(IPC_RMID) failed\n");
+		exit(EXIT_FAILURE);
+	}
+	exit(EXIT_SUCCESS);
+*/
 	//Q after multiplication.
 	//Should be: Q = [670 710 930 1150
 	//				  175 243 353 463
@@ -121,14 +121,24 @@ int main(){
 		printf("\n");
 	}
 	printf("]");
+}
+/*
+	if (pid!=0){
+			int stat_val;
+			pid_t child_pid;
 
+			child_pid = wait(&stat_val);
 
+			printf("Child has finished: PID = %d \n", child_pid);
 
-
-
-
-
-
+			if (WIFEXITED(stat_val))
+				printf("Child exited with code %d \n", WEXITSTATUS(stat_val));
+			else
+				printf("Child terminated abnormally \n");
+		}
+		//exit(exit_code);
+}
+*/
 
 	/*
 	//char *message;
@@ -218,4 +228,4 @@ int main(){
 		sleep(1);
 	}
 	exit(0);*/
-}
+
