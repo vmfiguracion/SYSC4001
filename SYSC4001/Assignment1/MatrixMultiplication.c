@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <sys/shm.h>
 #include "shm_com.h"
-#include <string.h>
+#include <sys/wait.h>
 
 //Q[i][k] = sum(M[i][j]*N[j][k])
 int main(){
@@ -40,11 +40,11 @@ int main(){
 	printf("Q = [");
 	for (int a = 0; a < n; a++){
 		for (int b = 0; b < n; b++){
-			printf("%d ", shared_stuff->shared_matrix[a][b]);
+			printf("%d ", shared_matrix[a][b]);
 		}
 		printf("\n");
 	}
-	printf("]");
+	//printf("]");
 
 	//1) Create shared memory
 	int shmid = shmget((key_t)1234, sizeof(struct shared_use_st), 0666 | IPC_CREAT);
@@ -67,15 +67,11 @@ int main(){
 	shared_stuff = (struct shared_use_st *) shared_memory;
 	shared_stuff->shared_matrix;
 
-
-
-
-	//strncpy(Q, shared_stuff-> shared_matrix, sizeof(Q));
-
 	//Creating child processes
 	for (i = 0; i < n; ++i){
 		//In child process
-		printf("Child process ID (%d) with parent ID (%d)\n", getpid(), getppid());
+		sleep(5);
+		printf("Child process ID (%d) with parent ID (%d) running row %d\n", getpid(), getppid(), i+1);
 
 		if (fork() == 0){
 
@@ -88,16 +84,15 @@ int main(){
 				//eg j=2: (M[i][2] * N[2][k])
 				printf("Column %d: ",k+1);
 				for(j = 0; j < n; j++){
-					shared_stuff->shared_matrix[i][k] += (M[i][j] * N[j][k]);
+					shared_matrix[i][k] += (M[i][j] * N[j][k]);
 				}
-				printf("%d \n", shared_stuff->shared_matrix[i][k]);
+				printf("%d \n", shared_matrix[i][k]);
 
 			}
 			break;
 		}
 	}
 
-	sleep(5);
 
 /*
 	//Shared memory is detached
@@ -111,19 +106,43 @@ int main(){
 	}
 	exit(EXIT_SUCCESS);
 */
-	//Q after multiplication.
-	//Should be: Q = [670 710 930 1150
-	//				  175 243 353 463
-	//				  68  144 232 320
-	//			 	  176 316 492 668]
-	printf("Q = [");
-	for (int a = 0; a < n; a++){
-		for (int b = 0; b < n; b++){
-			printf("%d ", shared_stuff->shared_matrix[a][b]);
+
+//---------------------------------------------------------------------------------------------------------------
+//How to make parent wait for multiple children
+	if (pid!=0){
+		for (int i = 0; i < n; ++i){
+			int stat_val;
+			pid_t child_pid;
+
+			child_pid = wait(&stat_val);
+
+			printf("Child has finished: PID = %d \n", child_pid);
+
+			if (WIFEXITED(stat_val)){
+				printf("Child exited with code %d \n", WEXITSTATUS(stat_val));
+			}
+			else
+				printf("Child terminated abnormally \n");
 		}
-		printf("\n");
+
+		//Q after multiplication.
+		//Should be: Q = [670 710 930 1150
+		//				  175 243 353 463
+		//				  68  144 232 320
+		//			 	  176 316 492 668]
+		printf("Q = [");
+		for (int a = 0; a < n; a++){
+			for (int b = 0; b < n; b++){
+				printf("%d ", shared_matrix[a][b]);
+			}
+			printf("\n");
+		}
+		printf("] \n");
 	}
-	printf("]");
+//--------------------------------------------------------------------------------------------------------------
+
+	exit(EXIT_SUCCESS);
+
 }
 /*
 	if (pid!=0){
