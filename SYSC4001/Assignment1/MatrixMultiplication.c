@@ -6,6 +6,12 @@
 #include "shm_com.h"
 #include <sys/wait.h>
 
+/*
+* SYSC 4001 - Assignment 1
+* Valerie Figuracion 100965536
+* February 14, 2020
+*/
+
 int main(){
 	int n = 4;
 	int i, j, k;
@@ -15,6 +21,7 @@ int main(){
 	void *shared_memory = (void *)0;
 	struct shared_use_st *shared_stuff;
 
+	//Input matricies
 	int M[4][4] = {
 	   {10, 20, 30, 40},
 	   {5, 6, 7, 8} ,
@@ -29,12 +36,15 @@ int main(){
 	};
 
 	int shared_matrix[4][4] = {{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0}};
-
-	//Q before multiplication.
-	//Should be: Q = [0 0 0 0
-	//		  0 0 0 0
-	//		  0 0 0 0
-	//		  0 0 0 0]
+	
+	/*
+	* Q before multiplication.
+	* Should be: 
+	* Q = [0 0 0 0
+	* 	   0 0 0 0
+	*	   0 0 0 0
+	*	   0 0 0 0]
+	*/
 	printf("Matrix Q before multiplication:\n");
 	for (int a = 0; a < n; a++){
 		for (int b = 0; b < n; b++){
@@ -148,4 +158,3 @@ int main(){
 	//Finish program
 	exit(EXIT_SUCCESS);
 }
-		  
