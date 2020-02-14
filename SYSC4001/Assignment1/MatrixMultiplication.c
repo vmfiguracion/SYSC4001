@@ -6,7 +6,6 @@
 #include "shm_com.h"
 #include <sys/wait.h>
 
-//Q[i][k] = sum(M[i][j]*N[j][k])
 int main(){
 	int n = 4;
 	int i, j, k;
@@ -36,7 +35,7 @@ int main(){
 	//		  0 0 0 0
 	//		  0 0 0 0
 	//		  0 0 0 0]
-	printf("Matrix before Multiplication:\n");
+	printf("Matrix before multiplication:\n");
 	for (int a = 0; a < n; a++){
 		for (int b = 0; b < n; b++){
 			printf("%d ", shared_matrix[a][b]);
@@ -44,9 +43,7 @@ int main(){
 		printf("\n");
 	}
 	
-	
-//Making Shared Memory
-	//1) Create shared memory
+	//Create shared memory
 	int shmid = shmget((key_t)1234, sizeof(struct shared_use_st), 0666 | IPC_CREAT);
 	//Stop if the create failed
 	if (shmid == -1){
@@ -54,20 +51,19 @@ int main(){
 		exit(EXIT_FAILURE);
 	}
 
-	//2) Enable access to the shared memory
+	//Enable access to the shared memory
 	shared_memory = shmat(shmid, (void *)0, 0);
 	//Stop if the enabling failed
 	if (shared_memory == (void *)-1){
 			fprintf(stderr, "shmat failed\n");
 			exit(EXIT_FAILURE);
 	}
-	printf("Memory attached at %X\n", (int *)shared_memory);
-
-	//3) Shared memory segment
+	
+	//Shared memory segment
 	shared_stuff = (struct shared_use_st *) shared_memory;
 	shared_stuff->shared_matrix;
 
-//CREATING CHILD PROCESSES
+	//Creatng child processes
 	for (i = 0; i < n; ++i){
 		//In child process
 		sleep(1);
@@ -91,12 +87,10 @@ int main(){
 		}
 	}
 
-
-
-//MAKE THE PARENT PROCESS WAIT FOR THE CHILDREN TO FINISH EXECUTION
-	while((pid=waitpid(-1,&status,0))!=-1){
-		sleep(2);
+	//Make the parent process wait for the children to finish executing
+	while((pid = waitpid(-1,&status,0)) != -1){
 		printf("Process %d terminated\n",pid);
+		sleep(2);
 	}
 
 	//Q after multiplication.
@@ -104,7 +98,8 @@ int main(){
 	//		  175 243 353 463
 	//		  68  144 232 320
 	//		  176 316 492 668]
-	for (int a = 0; a < n; a++){
+	printf("Matrix before multiplication:\n");
+	for (int a = 0; a < n; a++){ 
 		for (int b = 0; b < n; b++){
 			printf("%d ", shared_stuff->shared_matrix[a][b]);
 		}
@@ -112,12 +107,11 @@ int main(){
 	}
 
 
-//DETATCH SHARED MEMORY
+	//Detatch shared memory
 	if (shmdt(shared_memory) == -1){
 		fprintf(stderr, "shmdt failed \n");
 		exit(EXIT_FAILURE);
 	}
 	exit(EXIT_SUCCESS);
-
 }
 		  
