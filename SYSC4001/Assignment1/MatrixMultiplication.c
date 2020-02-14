@@ -30,7 +30,7 @@ int main(){
 	   {8, 6, 4, 2}
 	};
 
-	int Q[4][4] = {{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0}};
+	int shared_matrix[4][4] = {{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0}};
 
 	//Q before multiplication.
 	//Should be: Q = [0 0 0 0
@@ -40,7 +40,7 @@ int main(){
 	printf("Q = [");
 	for (int a = 0; a < n; a++){
 		for (int b = 0; b < n; b++){
-			printf("%d ", Q[a][b]);
+			printf("%d ", shared_stuff->shared_matrix[a][b]);
 		}
 		printf("\n");
 	}
@@ -67,7 +67,10 @@ int main(){
 	shared_stuff = (struct shared_use_st *) shared_memory;
 	shared_stuff->shared_matrix;
 
-	strncpy(Q, shared_stuff-> shared_matrix, sizeof(Q));
+
+
+
+	//strncpy(Q, shared_stuff-> shared_matrix, sizeof(Q));
 
 	//Creating child processes
 	for (i = 0; i < n; ++i){
@@ -85,16 +88,16 @@ int main(){
 				//eg j=2: (M[i][2] * N[2][k])
 				printf("Column %d: ",k+1);
 				for(j = 0; j < n; j++){
-					Q[i][k] += (M[i][j] * N[j][k]);
+					shared_stuff->shared_matrix[i][k] += (M[i][j] * N[j][k]);
 				}
-				printf("%d \n", Q[i][k]);
+				printf("%d \n", shared_stuff->shared_matrix[i][k]);
 
 			}
 			break;
 		}
 	}
 
-	sleep(10);
+	sleep(5);
 
 /*
 	//Shared memory is detached
@@ -116,7 +119,7 @@ int main(){
 	printf("Q = [");
 	for (int a = 0; a < n; a++){
 		for (int b = 0; b < n; b++){
-			printf("%d ", Q[a][b]);
+			printf("%d ", shared_stuff->shared_matrix[a][b]);
 		}
 		printf("\n");
 	}
