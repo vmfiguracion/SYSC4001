@@ -35,13 +35,33 @@ int main(){
 	//		  0 0 0 0
 	//		  0 0 0 0
 	//		  0 0 0 0]
-	printf("Matrix before multiplication:\n");
+	printf("Matrix Q before multiplication:\n");
 	for (int a = 0; a < n; a++){
 		for (int b = 0; b < n; b++){
 			printf("%d ", shared_matrix[a][b]);
 		}
 		printf("\n");
 	}
+	sleep(1);
+	
+	//Printing input matrix M
+	printf("Matrix M:\n");
+	for (int a = 0; a < n; a++){ 
+		for (int b = 0; b < n; b++){
+			printf("%d ", M[a][b]);
+		}
+		printf("\n");
+	}
+	sleep(1);
+	printf("Matrix N:\n");
+	//Printing input matrix N
+	for (int a = 0; a < n; a++){ 
+		for (int b = 0; b < n; b++){
+			printf("%d ", N[a][b]);
+		}
+		printf("\n");
+	}
+	sleep(1);
 	
 	//Create shared memory
 	int shmid = shmget((key_t)1234, sizeof(struct shared_use_st), 0666 | IPC_CREAT);
@@ -62,13 +82,12 @@ int main(){
 	//Shared memory segment
 	shared_stuff = (struct shared_use_st *) shared_memory;
 	shared_stuff->shared_matrix;
-
+	
 	//Creatng child processes
 	for (i = 0; i < n; ++i){
 		//In child process
-		sleep(1);
 		printf("Child process (P%d) computing row %d...\n", i+1, i+1);
-		sleep(3);
+		sleep(1);
 
 		if (fork() == 0){
 
@@ -82,36 +101,50 @@ int main(){
 					shared_stuff->shared_matrix[i][k] += (M[i][j] * N[j][k]);
 				}
 			}
-			sleep(3);
+			printf("Row %d: ", i+1);
+			for(int r = 0; r < n; r++){
+				printf("%d ", shared_stuff->shared_matrix[i][r]);
+			}
+			printf("\n");
+			sleep(1);
 			break;
 		}
 	}
 
 	//Make the parent process wait for the children to finish executing
 	while((pid = waitpid(-1,&status,0)) != -1){
-		printf("Process %d terminated\n",pid);
-		sleep(2);
+		printf("Process %d terminated.\n",pid);
+		sleep(1);
 	}
 
-	//Q after multiplication.
+	//Printing Q afte multiplication
 	//Should be: Q = [670 710 930 1150
 	//		  175 243 353 463
 	//		  68  144 232 320
 	//		  176 316 492 668]
-	printf("Matrix before multiplication:\n");
-	for (int a = 0; a < n; a++){ 
-		for (int b = 0; b < n; b++){
-			printf("%d ", shared_stuff->shared_matrix[a][b]);
-		}
-		printf("\n");
+	if (i < n){} 
+	else {
+		printf("Matrix Q after multiplying:\n");
+			for (int a = 0; a < n; a++){ 
+				for (int b = 0; b < n; b++){
+					printf("%d ", shared_stuff->shared_matrix[a][b]);
+				}
+				printf("\n");
+			}
+			sleep(1);
 	}
-
 
 	//Detatch shared memory
 	if (shmdt(shared_memory) == -1){
 		fprintf(stderr, "shmdt failed \n");
 		exit(EXIT_FAILURE);
 	}
+	if (shmctl(shmid, IPC_RMID, 0) == -1){
+		fprintf(stderr, "shmctl(IPC_RMID) failed\n");
+		exit(EXIT_FAILURE);
+	}
+	
+	//Finish program
 	exit(EXIT_SUCCESS);
 }
 		  
