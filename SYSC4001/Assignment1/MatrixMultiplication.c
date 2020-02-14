@@ -7,10 +7,24 @@
 int main(){
 	int n = 4;
 	pid_t pid_children[n]; //Ensure that each child has the same parent
-
+	
+	int M [4][4] = {
+		{10, 20, 30, 40},
+		{5, 6, 7, 8},
+		{4, 3, 2, 1},
+		{8, 7, 6, 5}
+	};
+	
+	int N [4][4] = {
+		{10, 30, 50, 70},
+		{2, 4, 6, 8},
+		{7, 3, 5, 7},
+		{8, 6, 4, 2}
+	};
+		
 	char *message;
 	
-
+	//Initialize all children
 	for(int i = 0; i < n; i++){
 		//Forking failed
 		if((pid_children[i] = fork()) < 0){
