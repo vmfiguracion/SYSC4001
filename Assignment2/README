@@ -1,0 +1,64 @@
+Goal for this program is to ensure that 
+	- 	Each process can only access the array if they have access to the critical section
+		with the use of semaphores
+	- 	Each process will have access to the same array using a part of the memory that is 
+		shared between all of them.
+	-	Each process will only look at numbers that is in the ith and the (i+1)th position
+		in the array
+			eg. Process P3 will only look the numbers in position 3 and 4 (shared_matrix[2]
+			and shared_matrix[3]).
+	- 	Once the program is done its sorting it will show the array in its final form.
+
+Files: 
+	SORT.c: Source file to sort an array of 5 distinct integers in descending order.
+	- Y/y for debug mode. N/n for regular mode.
+	
+	semun.h: Header file for the union structure of the semaphore.
+	
+	shm_com.h: Header file for the initiation of a shared matrix through shared memory.
+
+How to compile:
+	First enter: make all
+		to update all of the files
+	Then enter: ./sort 
+		to run the program
+	
+Algorithm:
+	Program asks for an array of 5 distinct numbers.
+		If numbers are not distinct the program ends.
+		If there are more than 5 numbers the array is reduced to the first 5 numbers.
+		If there are less than 5 numbers the program will wait until 5 numbers has been entered.
+	Each process i will check if the i-th number is less than the i+1 th number. If so, it
+	swaps places and the process will print a statement to show that it has been switched.
+		In debug mode, it will print more statements and it will differ depending on if the process
+		has switched the numbers or not.
+	Once the array is sorted, the program will print out the final array.
+	
+Test Results:
+	[15 16 18 12 17]: 	Process P1 switched 1 and 2
+						Process P2 switched 2 and 3
+						Process P4 switched 4 and 5
+						Process P1 switched 1 and 2
+						Process P3 switched 3 and 4
+						Process P2 switched 2 and 3
+						18 17 16 15 12 
+	
+	[110 19 111 15 17]:	Process P2 switched 2 and 3
+						Process P1 switched 1 and 2
+						Process P4 switched 4 and 5
+						111 110 19 17 15 
+
+	[2 90 8 4 65]: 		Process P1 switched 1 and 2
+						Process P2 switched 2 and 3
+						Process P3 switched 3 and 4
+						Process P4 switched 4 and 5
+						Process P3 switched 3 and 4
+						Process P2 switched 2 and 3
+						90 65 8 4 2 
+						
+	[5 8 9 6 2]:		Process P1 switched 1 and 2
+						Process P2 switched 2 and 3
+						Process P3 switched 3 and 4
+						Process P1 switched 1 and 2
+						9 8 6 5 2 
+

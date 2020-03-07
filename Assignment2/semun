@@ -1,0 +1,282 @@
+SEMCTL(2)                  Linux Programmer's Manual                 SEMCTL(2)
+
+[1mNAME[0m
+       semctl - System V semaphore control operations
+
+[1mSYNOPSIS[0m
+       [1m#include <sys/types.h>[0m
+       [1m#include <sys/ipc.h>[0m
+       [1m#include <sys/sem.h>[0m
+
+       [1mint semctl(int [4m[22msemid[24m[1m, int [4m[22msemnum[24m[1m, int [4m[22mcmd[24m[1m, ...);[0m
+
+[1mDESCRIPTION[0m
+       [1msemctl[22m()  performs  the  control operation specified by [4mcmd[24m on the Sys‐
+       tem V semaphore set identified by [4msemid[24m, or on the [4msemnum[24m-th  semaphore
+       of that set.  (The semaphores in a set are numbered starting at 0.)
+
+       This  function  has  three  or  four arguments, depending on [4mcmd[24m.  When
+       there are four, the fourth has the type [4munion[24m [4msemun[24m.  The [4mcalling[24m  [4mpro‐[0m
+       [4mgram[24m must define this union as follows:
+
+           union semun {
+               int              val;    /* Value for SETVAL */
+               struct semid_ds *buf;    /* Buffer for IPC_STAT, IPC_SET */
+               unsigned short  *array;  /* Array for GETALL, SETALL */
+               struct seminfo  *__buf;  /* Buffer for IPC_INFO
+                                           (Linux-specific) */
+           };
+
+       The [4msemid_ds[24m data structure is defined in [4m<sys/sem.h>[24m as follows:
+
+           struct semid_ds {
+               struct ipc_perm sem_perm;  /* Ownership and permissions */
+               time_t          sem_otime; /* Last semop time */
+               time_t          sem_ctime; /* Last change time */
+               unsigned long   sem_nsems; /* No. of semaphores in set */
+           };
+
+       The  [4mipc_perm[24m  structure  is defined as follows (the highlighted fields
+       are settable using [1mIPC_SET[22m):
+
+           struct ipc_perm {
+               key_t          __key; /* Key supplied to semget(2) */
+               uid_t          [1muid[22m;   /* Effective UID of owner */
+               gid_t          [1mgid[22m;   /* Effective GID of owner */
+               uid_t          cuid;  /* Effective UID of creator */
+               gid_t          cgid;  /* Effective GID of creator */
+               unsigned short [1mmode[22m;  /* Permissions */
+               unsigned short __seq; /* Sequence number */
+           };
+
+       Valid values for [4mcmd[24m are:
+
+       [1mIPC_STAT  [22mCopy information from the kernel  data  structure  associated
+                 with [4msemid[24m into the [4msemid_ds[24m structure pointed to by [4marg.buf[24m.
+                 The argument [4msemnum[24m is ignored.   The  calling  process  must
+                 have read permission on the semaphore set.
+
+       [1mIPC_SET   [22mWrite  the  values  of some members of the [4msemid_ds[24m structure
+                 pointed to by [4marg.buf[24m to the kernel data structure associated
+                 with  this semaphore set, updating also its [4msem_ctime[24m member.
+                 The  following  members  of  the   structure   are   updated:
+                 [4msem_perm.uid[24m, [4msem_perm.gid[24m, and (the least significant 9 bits
+                 of) [4msem_perm.mode[24m.  The effective UID of the calling  process
+                 must    match    the    owner   ([4msem_perm.uid[24m)   or   creator
+                 ([4msem_perm.cuid[24m) of the semaphore set, or the caller  must  be
+                 privileged.  The argument [4msemnum[24m is ignored.
+
+       [1mIPC_RMID  [22mImmediately remove the semaphore set, awakening all processes
+                 blocked in [1msemop[22m(2) calls on the set (with  an  error  return
+                 and  [4merrno[24m set to [1mEIDRM[22m).  The effective user ID of the call‐
+                 ing process must match the creator or owner of the  semaphore
+                 set,  or  the caller must be privileged.  The argument [4msemnum[0m
+                 is ignored.
+
+       [1mIPC_INFO [22m(Linux-specific)
+                 Return information about  system-wide  semaphore  limits  and
+                 parameters  in  the  structure pointed to by [4marg.__buf[24m.  This
+                 structure is of type [4mseminfo[24m, defined in [4m<sys/sem.h>[24m  if  the
+                 [1m_GNU_SOURCE [22mfeature test macro is defined:
+
+                     struct  seminfo {
+                         int semmap;  /* Number of entries in semaphore
+                                         map; unused within kernel */
+                         int semmni;  /* Maximum number of semaphore sets */
+                         int semmns;  /* Maximum number of semaphores in all
+                                         semaphore sets */
+                         int semmnu;  /* System-wide maximum number of undo
+                                         structures; unused within kernel */
+                         int semmsl;  /* Maximum number of semaphores in a
+                                         set */
+                         int semopm;  /* Maximum number of operations for
+                                         semop(2) */
+                         int semume;  /* Maximum number of undo entries per
+                                         process; unused within kernel */
+                         int semusz;  /* Size of struct sem_undo */
+                         int semvmx;  /* Maximum semaphore value */
+                         int semaem;  /* Max. value that can be recorded for
+                                         semaphore adjustment (SEM_UNDO) */
+                     };
+
+                 The  [4msemmsl[24m,  [4msemmns[24m,  [4msemopm[24m,  and  [4msemmni[24m  settings  can be
+                 changed via [4m/proc/sys/kernel/sem[24m; see [1mproc[22m(5) for details.
+
+       [1mSEM_INFO [22m(Linux-specific)
+                 Return a [4mseminfo[24m structure containing the same information as
+                 for  [1mIPC_INFO[22m,  except that the following fields are returned
+                 with information about system  resources  consumed  by  sema‐
+                 phores: the [4msemusz[24m field returns the number of semaphore sets
+                 that currently exist on the  system;  and  the  [4msemaem[24m  field
+                 returns  the total number of semaphores in all semaphore sets
+                 on the system.
+
+       [1mSEM_STAT [22m(Linux-specific)
+                 Return a [4msemid_ds[24m structure as for  [1mIPC_STAT[22m.   However,  the
+                 [4msemid[24m  argument is not a semaphore identifier, but instead an
+                 index into the kernel's internal array that maintains  infor‐
+                 mation about all semaphore sets on the system.
+
+       [1mGETALL    [22mReturn [1msemval [22m(i.e., the current value) for all semaphores of
+                 the set into [4marg.array[24m.  The argument [4msemnum[24m is ignored.  The
+                 calling  process  must  have read permission on the semaphore
+                 set.
+
+       [1mGETNCNT   [22mReturn the value of [1msemncnt [22mfor the  [4msemnum[24m-th  semaphore  of
+                 the  set  (i.e.,  the  number  of  processes  waiting  for an
+                 increase of [1msemval [22mfor the [4msemnum[24m-th semaphore of  the  set).
+                 The  calling  process  must have read permission on the sema‐
+                 phore set.
+
+       [1mGETPID    [22mReturn the value of [1msempid [22mfor the [4msemnum[24m-th semaphore of the
+                 set.   This  is the PID of the process that last performed an
+                 operation on that semaphore (but  see  NOTES).   The  calling
+                 process must have read permission on the semaphore set.
+
+       [1mGETVAL    [22mReturn the value of [1msemval [22mfor the [4msemnum[24m-th semaphore of the
+                 set.  The calling process must have read  permission  on  the
+                 semaphore set.
+
+       [1mGETZCNT   [22mReturn  the  value  of [1msemzcnt [22mfor the [4msemnum[24m-th semaphore of
+                 the set (i.e., the number of processes waiting for [1msemval  [22mof
+                 the [4msemnum[24m-th semaphore of the set to become 0).  The calling
+                 process must have read permission on the semaphore set.
+
+       [1mSETALL    [22mSet [1msemval [22mfor all semaphores of  the  set  using  [4marg.array[24m,
+                 updating  also the [4msem_ctime[24m member of the [4msemid_ds[24m structure
+                 associated with the set.  Undo  entries  (see  [1msemop[22m(2))  are
+                 cleared  for  altered  semaphores  in  all processes.  If the
+                 changes to semaphore values  would  permit  blocked  [1msemop[22m(2)
+                 calls in other processes to proceed, then those processes are
+                 woken up.  The  argument  [4msemnum[24m  is  ignored.   The  calling
+                 process  must  have alter (write) permission on the semaphore
+                 set.
+
+       [1mSETVAL    [22mSet the value of [1msemval [22mto [4marg.val[24m for  the  [4msemnum[24m-th  sema‐
+                 phore  of  the set, updating also the [4msem_ctime[24m member of the
+                 [4msemid_ds[24m structure associated with the set.  Undo entries are
+                 cleared  for  altered  semaphores  in  all processes.  If the
+                 changes to semaphore values  would  permit  blocked  [1msemop[22m(2)
+                 calls in other processes to proceed, then those processes are
+                 woken up.  The calling process must have alter permission  on
+                 the semaphore set.
+
+[1mRETURN VALUE[0m
+       On failure, [1msemctl[22m() returns -1 with [4merrno[24m indicating the error.
+
+       Otherwise, the system call returns a nonnegative value depending on [4mcmd[0m
+       as follows:
+
+       [1mGETNCNT   [22mthe value of [1msemncnt[22m.
+
+       [1mGETPID    [22mthe value of [1msempid[22m.
+
+       [1mGETVAL    [22mthe value of [1msemval[22m.
+
+       [1mGETZCNT   [22mthe value of [1msemzcnt[22m.
+
+       [1mIPC_INFO  [22mthe index of the highest used entry in the kernel's  internal
+                 array  recording information about all semaphore sets.  (This
+                 information can be used with repeated [1mSEM_STAT [22moperations  to
+                 obtain information about all semaphore sets on the system.)
+
+       [1mSEM_INFO  [22mas for [1mIPC_INFO[22m.
+
+       [1mSEM_STAT  [22mthe  identifier of the semaphore set whose index was given in
+                 [4msemid[24m.
+
+       All other [4mcmd[24m values return 0 on success.
+
+[1mERRORS[0m
+       On failure, [4merrno[24m will be set to one of the following:
+
+       [1mEACCES [22mThe argument [4mcmd[24m has one of the values [1mGETALL[22m,  [1mGETPID[22m,  [1mGETVAL[22m,
+              [1mGETNCNT[22m,  [1mGETZCNT[22m, [1mIPC_STAT[22m, [1mSEM_STAT[22m, [1mSETALL[22m, or [1mSETVAL [22mand the
+              calling process does not have the required  permissions  on  the
+              semaphore  set and does not have the [1mCAP_IPC_OWNER [22mcapability in
+              the user namespace that governs its IPC namespace.
+
+       [1mEFAULT [22mThe address pointed to by [4marg.buf[24m or [4marg.array[24m isn't accessible.
+
+       [1mEIDRM  [22mThe semaphore set was removed.
+
+       [1mEINVAL [22mInvalid value for [4mcmd[24m or [4msemid[24m.  Or: for a  [1mSEM_STAT  [22moperation,
+              the  index  value  specified  in [4msemid[24m referred to an array slot
+              that is currently unused.
+
+       [1mEPERM  [22mThe argument [4mcmd[24m has the  value  [1mIPC_SET  [22mor  [1mIPC_RMID  [22mbut  the
+              effective  user ID of the calling process is not the creator (as
+              found in [4msem_perm.cuid[24m) or the owner (as found in  [4msem_perm.uid[24m)
+              of  the  semaphore  set,  and  the  process  does  not  have the
+              [1mCAP_SYS_ADMIN [22mcapability.
+
+       [1mERANGE [22mThe argument [4mcmd[24m has the value [1mSETALL [22mor [1mSETVAL [22mand the value to
+              which  [1msemval  [22mis  to  be set (for some semaphore of the set) is
+              less than 0 or greater than the implementation limit [1mSEMVMX[22m.
+
+[1mCONFORMING TO[0m
+       POSIX.1-2001, POSIX.1-2008, SVr4.
+
+       POSIX.1 specifies the [4msem_nsems[24m field of the [4msemid_ds[24m structure as hav‐
+       ing  the type [4munsigned[24m [4mshort[24m, and the field is so defined on most other
+       systems.  It was also so defined on Linux 2.2 and earlier,  but,  since
+       Linux 2.4, the field has the type [4munsigned[24m [4mlong[24m.
+
+[1mNOTES[0m
+       The  inclusion of [4m<sys/types.h>[24m and [4m<sys/ipc.h>[24m isn't required on Linux
+       or by any version of POSIX.  However, some old implementations required
+       the inclusion of these header files, and the SVID also documented their
+       inclusion.  Applications intended to be portable to  such  old  systems
+       may need to include these header files.
+
+       The  [1mIPC_INFO[22m, [1mSEM_STAT [22mand [1mSEM_INFO [22moperations are used by the [1mipcs[22m(1)
+       program to provide information on allocated resources.  In  the  future
+       these may modified or moved to a [4m/proc[24m filesystem interface.
+
+       Various fields in a [4mstruct[24m [4msemid_ds[24m were typed as [4mshort[24m under Linux 2.2
+       and have become [4mlong[24m under Linux 2.4.  To take  advantage  of  this,  a
+       recompilation  under glibc-2.1.91 or later should suffice.  (The kernel
+       distinguishes old and new calls by an [1mIPC_64 [22mflag in [4mcmd[24m.)
+
+       In some earlier versions of glibc,  the  [4msemun[24m  union  was  defined  in
+       [4m<sys/sem.h>[24m,  but  POSIX.1  requires that the caller define this union.
+       On versions of glibc  where  this  union  is  [4mnot[24m  defined,  the  macro
+       [1m_SEM_SEMUN_UNDEFINED [22mis defined in [4m<sys/sem.h>[24m.
+
+       The following system limit on semaphore sets affects a [1msemctl[22m() call:
+
+       [1mSEMVMX [22mMaximum value for [1msemval[22m: implementation dependent (32767).
+
+       For  greater  portability, it is best to always call [1msemctl[22m() with four
+       arguments.
+
+   [1mThe sempid value[0m
+       POSIX.1 defines [4msempid[24m as the "process ID of [the] last operation" on a
+       semaphore,  and explicitly notes that this value is set by a successful
+       [1msemop[22m(2) call, with the implication that no other interface affects the
+       [4msempid[24m value.
+
+       While  some  implementations  conform  to  the  behavior  specified  in
+       POSIX.1, others do not.  (The fault here  probably  lies  with  POSIX.1
+       inasmuch  as  it  likely  failed  to capture the full range of existing
+       implementation behaviors.)  Various other implementations  also  update
+       [4msempid[24m  for  the other operations that update the value of a semaphore:
+       the [1mSETVAL [22mand [1mSETALL [22moperations, as well as the semaphore  adjustments
+       performed  on  process  termination  as a consequence of the use of the
+       [1mSEM_UNDO [22mflag (see [1msemop[22m(2)).
+
+       Linux also updates [4msempid[24m for [1mSETVAL [22moperations and  semaphore  adjust‐
+       ments.   However,  somewhat  inconsistently,  up  to and including 4.5,
+       Linux did not update [4msempid[24m for [1mSETALL [22moperations.  This was  rectified
+       in Linux 4.6.
+
+[1mSEE ALSO[0m
+       [1mipc[22m(2), [1msemget[22m(2), [1msemop[22m(2), [1mcapabilities[22m(7), [1msem_overview[22m(7), [1msvipc[22m(7)
+
+[1mCOLOPHON[0m
+       This  page  is  part of release 4.16 of the Linux [4mman-pages[24m project.  A
+       description of the project, information about reporting bugs,  and  the
+       latest     version     of     this    page,    can    be    found    at
+       https://www.kernel.org/doc/man-pages/.
+
+Linux                             2017-09-15                         SEMCTL(2)
