@@ -2,7 +2,7 @@
 #define FUNCTIONS_DOT_H
 
 /* Stores the four fields of the record according to the employee's information. */
-extern void Insert(char *name, char *department, int *employee_number, int *salary);
+extern void Insert(char *name, char *department, int employee_number, int salary);
 
 /* Returns the employee number of the name that's passed. */
 extern void Check_employee_number(char name);

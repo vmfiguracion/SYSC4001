@@ -5,19 +5,17 @@
 #include <unistd.h>
 
 #include <sys/msg.h>
+#include "functions.h"
+#include "message_struct.h"
 
-#define MAX_TEXT 512
+#define BUFSIZ 512
 
 //Sender
 
-struct my_msg_st{
-	long int my_msg_type;
-	char some_text[MAX_TEXT];
-};
+struct message_struct *some_data;
 
 int main(){
 	int running = 1;
-	struct my_msg_st some_data;
 	int msgid;
 	char buffer[BUFSIZ];
 
@@ -34,8 +32,7 @@ int main(){
 	while(running){
 		printf("Enter some text: ");
 		fgets(buffer, BUFSIZ, stdin);
-		some_data.my_msg_type = 1;
-		strcpy(some_data.some_text, buffer);
+		//strcpy(some_data->name, buffer);
 
 		if(msgsnd(msgid, (void *)&some_data, MAX_TEXT, 0) == -1){
 			fprintf(stderr, "msgsnd failed\n");
