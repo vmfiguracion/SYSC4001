@@ -8,10 +8,7 @@
 
 //Receiver
 
-struct my_msg_st{
-	long int my_msg_type;
-	char some_text[BUFSIZ];
-};
+struct employees_struct employees;
 
 int main(){
 	int running = 1;

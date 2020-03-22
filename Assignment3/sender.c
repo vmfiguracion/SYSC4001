@@ -12,7 +12,7 @@
 
 //Sender
 
-struct message_struct *some_data;
+struct employees_struct *some_data;
 
 int main(){
 	int running = 1;
