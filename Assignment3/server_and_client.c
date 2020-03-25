@@ -3,6 +3,15 @@
 #define SERVER_MQUEUE 1234
 #define CLIENT_MQUEUE 4321
 
+typedef struct {
+	pid_t 				client_pid;
+	client_request_e 	request;
+	server_response_e 	response;
+	cdc_entry 			cdc_entry_data;
+	cdt_entry			cdt_entry_data;
+	char 				error_text[ERR_TEXT_LEN + 1];
+} message_db_t;
+
 struct msg_passed{
 	long int msg_key; /* for client pid */
 	message_db_t real_message;
