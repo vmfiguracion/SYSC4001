@@ -10,10 +10,10 @@ int Check_employee_number(char name);
 /* Returns the salary of of the employee number that's passed. */
 int Check_salary(int employee_number);
 
-/* Returns te employee numbers of all employees that work in the department. */
+/* Returns a list of the employee numbers of all employees that work in the department. */
 int *Check(char department);
 
 /* Delete the record of the employee with the employee number that's passed. */
-void Delete(int employee_number);
+int Delete(int employee_number);
 
 #endif

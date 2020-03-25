@@ -3,7 +3,7 @@
 #include "functions.h"
 #include "employees_struct.h"
 
-/*Linked List*/
+//Functions for the administrator to send to the Record-Keeper
 typedef struct node{
 	int val;
 	struct node *next;
@@ -64,7 +64,7 @@ int Check_salary(int employee_number){
 	return -1;
 }
 
-/* Returns te employee numbers of all employees that work in the department. */
+/* Returns a list of the employee numbers of all employees that work in the department. */
 int *Check(char department){
 	int *emp_in_dep[100];
 	int index = 0;
@@ -85,7 +85,7 @@ int *Check(char department){
 }
 
 /* Delete the record of the employee with the employee number that's passed. */
-void Delete(int employee_number){
+int Delete(int employee_number){
 	node_t *head = (node_t*) malloc(sizeof(node_t));
 	node_t *current = head;
 
@@ -106,15 +106,12 @@ void Delete(int employee_number){
 				employees[index].employee_number = 			employees[index+1].employee_number;
 				employees[index].salary = employees[index+1].salary;
 				index++;
-			} 
+			}
+			return 0; 
 
 		}
 		current = current->next;
 		count++;
-	}
-}
-
-int main(){
-	Insert("rer", "dep", 13, 40);
-
+	}	
+	return -1;
 }
