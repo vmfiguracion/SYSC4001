@@ -1,4 +1,5 @@
 #include <string.h>
+#include <stdlib.h>
 #include "functions.h"
 #include "employees_struct.h"
 
@@ -51,6 +52,12 @@ int Check_salary(int employee_number){
 
 /* Returns te employee numbers of all employees that work in the department. */
 char[] Check(char department){
+	node_t *current = head;
+	while(current->next != NULL){
+		current = current->next;
+		if(
+	}	
+
 	return;
 }
 

@@ -1,20 +1,13 @@
 #include <sys/msg.h>
+#include "employees_struct.h"
+#include "functions.h"
 
 #define SERVER_MQUEUE 1234
 #define CLIENT_MQUEUE 4321
 
-typedef struct {
-	pid_t 				client_pid;
-	client_request_e 	request;
-	server_response_e 	response;
-	cdc_entry 			cdc_entry_data;
-	cdt_entry			cdt_entry_data;
-	char 				error_text[ERR_TEXT_LEN + 1];
-} message_db_t;
-
 struct msg_passed{
 	long int msg_key; /* for client pid */
-	message_db_t real_message;
+	employees_struct employee_data; //Struct for employee data
 }
 
 //Two variables with file scope hold the two queue identifiers returned from the msgget function
@@ -45,7 +38,7 @@ void server_ending(){
 	#endif
 	
 	(void)msgctl(serv_qid, IPC_RMID, 0);
-	(void)msgcrl(cli_qid, IPC_RMID, 0);
+	(void)msgctl(cli_qid, IPC_RMID, 0);
 	
 	serv_qid = -1;
 	cli_qid = -1;
@@ -53,7 +46,7 @@ void server_ending(){
 
 //Read function reads a message of any time (ie from any client) from the queue, and it returns
 //the data part (ignoring type) of the message
-int read_request_from_client(message_db_t *rec_ptr){
+int read_request_from_client(employees_struct *rec_ptr){
 	struct msg_passed my_msg;
 	
 	#if DEGUB_TRACE
@@ -63,18 +56,19 @@ int read_request_from_client(message_db_t *rec_ptr){
 	if (msgrcv(serv_qid, (void *)&my_msg, sizeof(*rec_ptr), 0, 0) == -1) {
 		return(0);
 	}
-	*rec_ptr = my_msg.real_message;
+	*rec_ptr = my_msg.employee_data;
+
 	return(1);
 }
 
 //Sending a response uses the client process ID it was stored in the request to address the message
-int send_resp_to_client(const message_db_t mess_to_send){
+int send_resp_to_client(const employees_struct mess_to_send){
 	struct msg_passed my_msg;
 	#if DEBUG_TRACE
 		printf("%d :- send_resp_to_client()\n", getpid());
 	#endif
 	
-	my_msg.real_message = mess_to_send;
+	my_msg.employee_data = mess_to_send;
 	my_msg.msg_key = mess_to_send.client_pid;
 	if (msgsnd(cli_qid, (void *)&my_msg, sizeof(mess_to_send), 0) == -1) {
 		return(0);
@@ -109,15 +103,15 @@ void client_ending(){
 //To send a message to the server, store the data inside a structure. Must set the message key.
 //Leaving key undefined would mean that it takes a random value, so the function could occasionally
 //if the value is 0
-int send_mess_to_server(message_db_t mess_to_send){
+int send_mess_to_server(employees_struct mess_to_send){
 	struct msg_passed my_msg;
 	#if DEBUG_TRACE
 		printf("%d :- send_mess_to_server()\n", getpid());
 	#endif
-	my_msg.real_message = mess_to_send;
+	my_msg.employee_data = mess_to_send;
 	my_msg.msg_key = mess_to_send.client_pid;
 	if (msgsnd(serv_qid, (void *)&my_msg, sizeof(mess_to_send), 0) == -1) {
-		perror("Message send failed");
+		//perror("Message send failed");
 		return(0);
 	}
 	return(1);
@@ -125,7 +119,7 @@ int send_mess_to_server(message_db_t mess_to_send){
 
 //When a client retrieves a message from the server it uses its proesses ID to receive only
 //messages addressed to itself
-int read_resp_from_server(message_db_t *rec_ptr){
+int read_resp_from_server(employees_struct *rec_ptr){
 	struct msg_passed my_msg;
 	#if DEBUG_TRACE
 		printf("%d :- read_resp_from_server()\n", getpid());
@@ -133,12 +127,12 @@ int read_resp_from_server(message_db_t *rec_ptr){
 	if (msgrcv(cli_qid, (void *)&my_msg, sizeof(*rec_ptr), getpid(), 0) == -1) {
 		return(0);
 	}
-	*rec_ptr = my_msg.real_message;
+	*rec_ptr = my_msg.employee_data;
 	return(1);
 }
 
 //To retain complete compatibility with pipe_imp.c 4 extra functions are defined and are empty.
-int start_resp_to_client(const message_db_t mess_to_send){
+int start_resp_to_client(const employees_struct mess_to_send){
 	return(1);
 }
 
@@ -151,29 +145,4 @@ int start_resp_from_server(void){
 
 void end_resp_from_server(void){
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
