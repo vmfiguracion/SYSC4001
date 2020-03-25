@@ -75,7 +75,7 @@ int send_resp_to_client(const employees_struct mess_to_send){
 	}
 }
 
-//CLIENT-------------------------------------------------------------------------------------------------
+//CLIENT---------------------------------------------------------------------------------
 //Client needs to find the server & client queue identifiers. DOES NOT CREATE QUEUE. Will fail if server isn't running
 //b/c message queues won't exist
 int client_starting(){
