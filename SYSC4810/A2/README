@@ -1,0 +1,69 @@
+Files
+Problem 1
+- P1.txt: Original text file
+- P1cbc.txt: Text file encoded using AES-128 bit CBC
+- P1cbc192.txt: Text file encoded using AES-192 bit CBC
+- P1cbc256.txt: Text file encoded using AES-256 bit CBC
+- P1cfb.txt: Text file encoded using AES-192 bit CFB
+- P1cfb128.txt: Text file encoded using AES-128 bit CFB
+- P1ecb.txt: Text file encoded using AES-256 bit ECB
+- P1ecb128.txt: Text file encoded using AES-128 bit ECB
+- Problem1b.txt: Text file of commands to for encoding the original text file into the different encrypted files.
+
+Problem 2
+- plate1.bmp: Original bmp file of plate 1
+- p1cbc.bmp: plate1.bmp file encoded using AES-128 bit CBC
+- newp1cbc.bmp: p1cbc.bmp with the proper header to be treated as a legitamite bmp file
+- p1ecb.bmp: plate1.bmp file encoded using AES-128 bit ECB
+- newp1ecb.bmp: p1ecb.bmp with the proper header to be treated as a legitamite bmp file
+- plate2.bmp: Original bmp file of plate 2
+- p2ecb.bmp: plate2.bmp file encoded using AES-128 bit ECB
+- newp2ecb.bmp: p2ecb.bmp with the proper header to be treated as a legitamite bmp file
+- p2cbc.bmp: plate2.bmp file encoded using AES-128 bit CBC
+- newp2cbc.bmp: p2cbc.bmp with the proper header to be treated as a legitamite bmp file
+- Problem2.txt: Text file of commands to for encoding the original text file into the different encrypted files and replacing the encrypted headers.
+
+Problem 3
+- Problem3.c: Calculates the private key d given two prime numbers p, q and the public key e.
+
+Problem 4
+- Problem4.c: Encryption function to encrypt a text using asymmetric encryption.
+
+Code snippit from "https://www.includehelp.com/c/convert-ascii-string-to-hexadecimal-string-in-c.aspx#:~:text=To%20convert%20an%20ASCII%20string,(like%20int%2C%20char)."
+
+- void string2hexString(char* input, char* output)
+
+char ascii_str[] = " ";
+//Declare output string with double size of input string
+//because each character of input string will be converted
+//in 2 bytes
+int len = strlen(ascii_str);
+char hex_str[(len*2)+1];
+
+//Convert ASCII string into a hexadecimal
+string2hexString(ascii_str, hex_str);
+
+Problem 5
+- Problem5.c: Decryption function that decrypts a hex string using asymmetric encryption.
+
+Code snippit from "https://stackoverflow.com/questions/5403103/hex-to-ascii-string-conversion"
+- int hex_to_int(char c)
+- int hex_to_ascii(char d)
+const char* st = "";
+        int length = strlen(st);
+        int i;
+        char buf = 0;
+        for(i = 0; i < length; i++){
+                if(i % 2 != 0){
+                        printf("%c", hex_to_ascii(st[i]));
+                }else{
+                        buf = st[i];
+			
+                }
+        }
+
+Problem 6
+- Problem6a.c & Problem 6b.c: Creates a digital signature that encrypts an ASCII string. 
+
+Problem 7
+- Problem 7a.c & Problem 7b.c: Verifies a digital signature and decrypt the message into an ASCII string.

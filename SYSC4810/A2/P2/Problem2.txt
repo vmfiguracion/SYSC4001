@@ -1,0 +1,36 @@
+Encryption
+To encrypt plate1.bmp using AES-128 bit CBC:
+$ openssl enc -aes-128-cbc -in plate1.bmp -out p1cbc.bmp -K 0123456789 -iv ABCDEF
+
+To encrypt plate1.bmp using AES-128 bit ECB:
+$ openssl enc -aes-128-ecb -in plate1.bmp -out p1ecb.bmp -K 0123456789
+
+To encrypt plate2.bmp using AES-128 bit CBC:
+$ openssl enc -aes-128-cbc -in plate2.bmp -out p2cbc.bmp -K 0123456789 -iv ABCDEF
+
+To encrypt plate2.bmp using AES-128 bit ECB:
+$ openssl enc -aes-128-ecb -in plate2.bmp -out p2ecb.bmp -K 0123456789
+
+Replacing encrypted headers
+p1cbc.bmp --> newp1cbc.bmp
+$ head -c 54 plate1.bmp > header
+$ tail -c +55 p1cbc.bmp > body
+$ cat header body > newp1cbc.bmp
+
+p1ecb.bmp --> newp1ecb.bmp
+$ head -c 54 plate1.bmp > header
+$ tail -c +55 p1ecb.bmp > body
+$ cat header body > newp1ecb.bmp
+
+p2cbc.bmp --> newp2cbc.bmp
+$ head -c 54 plate2.bmp > header
+$ tail -c +55 p2cbc.bmp > body
+$ cat header body > newp2cbc.bmp
+
+p2ecb.bmp --> newp2ecb.bmp
+$ head -c 54 plate2.bmp > header
+$ tail -c +55 p2ecb.bmp > body
+$ cat header body > newp2ecb.bmp
+
+Key: 0123456789
+IV: ABCDEF

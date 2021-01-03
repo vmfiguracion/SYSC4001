@@ -1,0 +1,469 @@
+No.     Time                          Source                Destination           Protocol Length Info
+      1 2020-11-14 01:06:00.779321738 10.0.2.4              10.0.2.5              SSH      110    Client: Encrypted packet (len=44)
+
+Frame 1: 110 bytes on wire (880 bits), 110 bytes captured (880 bits) on interface 0
+Ethernet II, Src: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc), Dst: PcsCompu_88:41:5d (08:00:27:88:41:5d)
+Internet Protocol Version 4, Src: 10.0.2.4, Dst: 10.0.2.5
+Transmission Control Protocol, Src Port: 50346, Dst Port: 22, Seq: 1024764671, Ack: 2209584221, Len: 44
+SSH Protocol
+
+No.     Time                          Source                Destination           Protocol Length Info
+      2 2020-11-14 01:06:00.781528943 10.0.2.5              10.0.2.4              SSH      118    Server: Encrypted packet (len=52)
+
+Frame 2: 118 bytes on wire (944 bits), 118 bytes captured (944 bits) on interface 0
+Ethernet II, Src: PcsCompu_88:41:5d (08:00:27:88:41:5d), Dst: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc)
+Internet Protocol Version 4, Src: 10.0.2.5, Dst: 10.0.2.4
+Transmission Control Protocol, Src Port: 22, Dst Port: 50346, Seq: 2209584221, Ack: 1024764715, Len: 52
+SSH Protocol
+
+No.     Time                          Source                Destination           Protocol Length Info
+      3 2020-11-14 01:06:00.781570913 10.0.2.4              10.0.2.5              TCP      66     50346 → 22 [ACK] Seq=1024764715 Ack=2209584273 Win=427 Len=0 TSval=671650 TSecr=5491517
+
+Frame 3: 66 bytes on wire (528 bits), 66 bytes captured (528 bits) on interface 0
+Ethernet II, Src: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc), Dst: PcsCompu_88:41:5d (08:00:27:88:41:5d)
+Internet Protocol Version 4, Src: 10.0.2.4, Dst: 10.0.2.5
+Transmission Control Protocol, Src Port: 50346, Dst Port: 22, Seq: 1024764715, Ack: 2209584273, Len: 0
+
+No.     Time                          Source                Destination           Protocol Length Info
+      4 2020-11-14 01:06:05.908291622 PcsCompu_88:41:5d     PcsCompu_2f:0d:dc     ARP      60     Who has 10.0.2.4? Tell 10.0.2.5
+
+Frame 4: 60 bytes on wire (480 bits), 60 bytes captured (480 bits) on interface 0
+Ethernet II, Src: PcsCompu_88:41:5d (08:00:27:88:41:5d), Dst: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc)
+Address Resolution Protocol (request)
+
+No.     Time                          Source                Destination           Protocol Length Info
+      5 2020-11-14 01:06:05.908309603 PcsCompu_2f:0d:dc     PcsCompu_88:41:5d     ARP      42     10.0.2.4 is at 08:00:27:2f:0d:dc
+
+Frame 5: 42 bytes on wire (336 bits), 42 bytes captured (336 bits) on interface 0
+Ethernet II, Src: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc), Dst: PcsCompu_88:41:5d (08:00:27:88:41:5d)
+Address Resolution Protocol (reply)
+
+No.     Time                          Source                Destination           Protocol Length Info
+      6 2020-11-14 01:06:06.018820829 PcsCompu_2f:0d:dc     PcsCompu_88:41:5d     ARP      42     Who has 10.0.2.5? Tell 10.0.2.4
+
+Frame 6: 42 bytes on wire (336 bits), 42 bytes captured (336 bits) on interface 0
+Ethernet II, Src: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc), Dst: PcsCompu_88:41:5d (08:00:27:88:41:5d)
+Address Resolution Protocol (request)
+
+No.     Time                          Source                Destination           Protocol Length Info
+      7 2020-11-14 01:06:06.019175467 PcsCompu_88:41:5d     PcsCompu_2f:0d:dc     ARP      60     10.0.2.5 is at 08:00:27:88:41:5d
+
+Frame 7: 60 bytes on wire (480 bits), 60 bytes captured (480 bits) on interface 0
+Ethernet II, Src: PcsCompu_88:41:5d (08:00:27:88:41:5d), Dst: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc)
+Address Resolution Protocol (reply)
+
+No.     Time                          Source                Destination           Protocol Length Info
+      8 2020-11-14 01:06:13.379470811 10.0.2.4              10.0.2.5              SSH      102    Client: Encrypted packet (len=36)
+
+Frame 8: 102 bytes on wire (816 bits), 102 bytes captured (816 bits) on interface 0
+Ethernet II, Src: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc), Dst: PcsCompu_88:41:5d (08:00:27:88:41:5d)
+Internet Protocol Version 4, Src: 10.0.2.4, Dst: 10.0.2.5
+Transmission Control Protocol, Src Port: 50346, Dst Port: 22, Seq: 1024764715, Ack: 2209584273, Len: 36
+SSH Protocol
+
+No.     Time                          Source                Destination           Protocol Length Info
+      9 2020-11-14 01:06:13.380931736 10.0.2.5              10.0.2.4              SSH      102    Server: Encrypted packet (len=36)
+
+Frame 9: 102 bytes on wire (816 bits), 102 bytes captured (816 bits) on interface 0
+Ethernet II, Src: PcsCompu_88:41:5d (08:00:27:88:41:5d), Dst: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc)
+Internet Protocol Version 4, Src: 10.0.2.5, Dst: 10.0.2.4
+Transmission Control Protocol, Src Port: 22, Dst Port: 50346, Seq: 2209584273, Ack: 1024764751, Len: 36
+SSH Protocol
+
+No.     Time                          Source                Destination           Protocol Length Info
+     10 2020-11-14 01:06:13.380999832 10.0.2.4              10.0.2.5              TCP      66     50346 → 22 [ACK] Seq=1024764751 Ack=2209584309 Win=427 Len=0 TSval=674800 TSecr=5494669
+
+Frame 10: 66 bytes on wire (528 bits), 66 bytes captured (528 bits) on interface 0
+Ethernet II, Src: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc), Dst: PcsCompu_88:41:5d (08:00:27:88:41:5d)
+Internet Protocol Version 4, Src: 10.0.2.4, Dst: 10.0.2.5
+Transmission Control Protocol, Src Port: 50346, Dst Port: 22, Seq: 1024764751, Ack: 2209584309, Len: 0
+
+No.     Time                          Source                Destination           Protocol Length Info
+     11 2020-11-14 01:06:13.382032731 10.0.2.6              10.0.2.4              ICMP     98     Echo (ping) request  id=0x0b42, seq=1/256, ttl=64 (reply in 12)
+
+Frame 11: 98 bytes on wire (784 bits), 98 bytes captured (784 bits) on interface 0
+Ethernet II, Src: PcsCompu_6a:ba:95 (08:00:27:6a:ba:95), Dst: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc)
+Internet Protocol Version 4, Src: 10.0.2.6, Dst: 10.0.2.4
+Internet Control Message Protocol
+
+No.     Time                          Source                Destination           Protocol Length Info
+     12 2020-11-14 01:06:13.382067488 10.0.2.4              10.0.2.6              ICMP     98     Echo (ping) reply    id=0x0b42, seq=1/256, ttl=64 (request in 11)
+
+Frame 12: 98 bytes on wire (784 bits), 98 bytes captured (784 bits) on interface 0
+Ethernet II, Src: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc), Dst: PcsCompu_6a:ba:95 (08:00:27:6a:ba:95)
+Internet Protocol Version 4, Src: 10.0.2.4, Dst: 10.0.2.6
+Internet Control Message Protocol
+
+No.     Time                          Source                Destination           Protocol Length Info
+     13 2020-11-14 01:06:13.382439114 10.0.2.5              10.0.2.4              SSH      150    Server: Encrypted packet (len=84)
+
+Frame 13: 150 bytes on wire (1200 bits), 150 bytes captured (1200 bits) on interface 0
+Ethernet II, Src: PcsCompu_88:41:5d (08:00:27:88:41:5d), Dst: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc)
+Internet Protocol Version 4, Src: 10.0.2.5, Dst: 10.0.2.4
+Transmission Control Protocol, Src Port: 22, Dst Port: 50346, Seq: 2209584309, Ack: 1024764751, Len: 84
+SSH Protocol
+
+No.     Time                          Source                Destination           Protocol Length Info
+     14 2020-11-14 01:06:13.382478645 10.0.2.4              10.0.2.5              TCP      66     50346 → 22 [ACK] Seq=1024764751 Ack=2209584393 Win=427 Len=0 TSval=674801 TSecr=5494669
+
+Frame 14: 66 bytes on wire (528 bits), 66 bytes captured (528 bits) on interface 0
+Ethernet II, Src: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc), Dst: PcsCompu_88:41:5d (08:00:27:88:41:5d)
+Internet Protocol Version 4, Src: 10.0.2.4, Dst: 10.0.2.5
+Transmission Control Protocol, Src Port: 50346, Dst Port: 22, Seq: 1024764751, Ack: 2209584393, Len: 0
+
+No.     Time                          Source                Destination           Protocol Length Info
+     15 2020-11-14 01:06:13.382766373 10.0.2.5              10.0.2.4              SSH      158    Server: Encrypted packet (len=92)
+
+Frame 15: 158 bytes on wire (1264 bits), 158 bytes captured (1264 bits) on interface 0
+Ethernet II, Src: PcsCompu_88:41:5d (08:00:27:88:41:5d), Dst: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc)
+Internet Protocol Version 4, Src: 10.0.2.5, Dst: 10.0.2.4
+Transmission Control Protocol, Src Port: 22, Dst Port: 50346, Seq: 2209584393, Ack: 1024764751, Len: 92
+SSH Protocol
+
+No.     Time                          Source                Destination           Protocol Length Info
+     16 2020-11-14 01:06:13.382778064 10.0.2.4              10.0.2.5              TCP      66     50346 → 22 [ACK] Seq=1024764751 Ack=2209584485 Win=427 Len=0 TSval=674801 TSecr=5494669
+
+Frame 16: 66 bytes on wire (528 bits), 66 bytes captured (528 bits) on interface 0
+Ethernet II, Src: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc), Dst: PcsCompu_88:41:5d (08:00:27:88:41:5d)
+Internet Protocol Version 4, Src: 10.0.2.4, Dst: 10.0.2.5
+Transmission Control Protocol, Src Port: 50346, Dst Port: 22, Seq: 1024764751, Ack: 2209584485, Len: 0
+
+No.     Time                          Source                Destination           Protocol Length Info
+     17 2020-11-14 01:06:14.385334186 10.0.2.6              10.0.2.4              ICMP     98     Echo (ping) request  id=0x0b42, seq=2/512, ttl=64 (reply in 18)
+
+Frame 17: 98 bytes on wire (784 bits), 98 bytes captured (784 bits) on interface 0
+Ethernet II, Src: PcsCompu_6a:ba:95 (08:00:27:6a:ba:95), Dst: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc)
+Internet Protocol Version 4, Src: 10.0.2.6, Dst: 10.0.2.4
+Internet Control Message Protocol
+
+No.     Time                          Source                Destination           Protocol Length Info
+     18 2020-11-14 01:06:14.385370164 10.0.2.4              10.0.2.6              ICMP     98     Echo (ping) reply    id=0x0b42, seq=2/512, ttl=64 (request in 17)
+
+Frame 18: 98 bytes on wire (784 bits), 98 bytes captured (784 bits) on interface 0
+Ethernet II, Src: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc), Dst: PcsCompu_6a:ba:95 (08:00:27:6a:ba:95)
+Internet Protocol Version 4, Src: 10.0.2.4, Dst: 10.0.2.6
+Internet Control Message Protocol
+
+No.     Time                          Source                Destination           Protocol Length Info
+     19 2020-11-14 01:06:14.386418277 10.0.2.5              10.0.2.4              SSH      158    Server: Encrypted packet (len=92)
+
+Frame 19: 158 bytes on wire (1264 bits), 158 bytes captured (1264 bits) on interface 0
+Ethernet II, Src: PcsCompu_88:41:5d (08:00:27:88:41:5d), Dst: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc)
+Internet Protocol Version 4, Src: 10.0.2.5, Dst: 10.0.2.4
+Transmission Control Protocol, Src Port: 22, Dst Port: 50346, Seq: 2209584485, Ack: 1024764751, Len: 92
+SSH Protocol
+
+No.     Time                          Source                Destination           Protocol Length Info
+     20 2020-11-14 01:06:14.386461399 10.0.2.4              10.0.2.5              TCP      66     50346 → 22 [ACK] Seq=1024764751 Ack=2209584577 Win=427 Len=0 TSval=675052 TSecr=5494920
+
+Frame 20: 66 bytes on wire (528 bits), 66 bytes captured (528 bits) on interface 0
+Ethernet II, Src: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc), Dst: PcsCompu_88:41:5d (08:00:27:88:41:5d)
+Internet Protocol Version 4, Src: 10.0.2.4, Dst: 10.0.2.5
+Transmission Control Protocol, Src Port: 50346, Dst Port: 22, Seq: 1024764751, Ack: 2209584577, Len: 0
+
+No.     Time                          Source                Destination           Protocol Length Info
+     21 2020-11-14 01:06:14.386481363 10.0.2.5              10.0.2.4              SSH      102    Server: Encrypted packet (len=36)
+
+Frame 21: 102 bytes on wire (816 bits), 102 bytes captured (816 bits) on interface 0
+Ethernet II, Src: PcsCompu_88:41:5d (08:00:27:88:41:5d), Dst: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc)
+Internet Protocol Version 4, Src: 10.0.2.5, Dst: 10.0.2.4
+Transmission Control Protocol, Src Port: 22, Dst Port: 50346, Seq: 2209584577, Ack: 1024764751, Len: 36
+SSH Protocol
+
+No.     Time                          Source                Destination           Protocol Length Info
+     22 2020-11-14 01:06:14.386490071 10.0.2.4              10.0.2.5              TCP      66     50346 → 22 [ACK] Seq=1024764751 Ack=2209584613 Win=427 Len=0 TSval=675052 TSecr=5494920
+
+Frame 22: 66 bytes on wire (528 bits), 66 bytes captured (528 bits) on interface 0
+Ethernet II, Src: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc), Dst: PcsCompu_88:41:5d (08:00:27:88:41:5d)
+Internet Protocol Version 4, Src: 10.0.2.4, Dst: 10.0.2.5
+Transmission Control Protocol, Src Port: 50346, Dst Port: 22, Seq: 1024764751, Ack: 2209584613, Len: 0
+
+No.     Time                          Source                Destination           Protocol Length Info
+     23 2020-11-14 01:06:15.408719893 10.0.2.6              10.0.2.4              ICMP     98     Echo (ping) request  id=0x0b42, seq=3/768, ttl=64 (reply in 24)
+
+Frame 23: 98 bytes on wire (784 bits), 98 bytes captured (784 bits) on interface 0
+Ethernet II, Src: PcsCompu_6a:ba:95 (08:00:27:6a:ba:95), Dst: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc)
+Internet Protocol Version 4, Src: 10.0.2.6, Dst: 10.0.2.4
+Internet Control Message Protocol
+
+No.     Time                          Source                Destination           Protocol Length Info
+     24 2020-11-14 01:06:15.408760027 10.0.2.4              10.0.2.6              ICMP     98     Echo (ping) reply    id=0x0b42, seq=3/768, ttl=64 (request in 23)
+
+Frame 24: 98 bytes on wire (784 bits), 98 bytes captured (784 bits) on interface 0
+Ethernet II, Src: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc), Dst: PcsCompu_6a:ba:95 (08:00:27:6a:ba:95)
+Internet Protocol Version 4, Src: 10.0.2.4, Dst: 10.0.2.6
+Internet Control Message Protocol
+
+No.     Time                          Source                Destination           Protocol Length Info
+     25 2020-11-14 01:06:15.409795286 10.0.2.5              10.0.2.4              SSH      158    Server: Encrypted packet (len=92)
+
+Frame 25: 158 bytes on wire (1264 bits), 158 bytes captured (1264 bits) on interface 0
+Ethernet II, Src: PcsCompu_88:41:5d (08:00:27:88:41:5d), Dst: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc)
+Internet Protocol Version 4, Src: 10.0.2.5, Dst: 10.0.2.4
+Transmission Control Protocol, Src Port: 22, Dst Port: 50346, Seq: 2209584613, Ack: 1024764751, Len: 92
+SSH Protocol
+
+No.     Time                          Source                Destination           Protocol Length Info
+     26 2020-11-14 01:06:15.409816817 10.0.2.4              10.0.2.5              TCP      66     50346 → 22 [ACK] Seq=1024764751 Ack=2209584705 Win=427 Len=0 TSval=675307 TSecr=5495176
+
+Frame 26: 66 bytes on wire (528 bits), 66 bytes captured (528 bits) on interface 0
+Ethernet II, Src: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc), Dst: PcsCompu_88:41:5d (08:00:27:88:41:5d)
+Internet Protocol Version 4, Src: 10.0.2.4, Dst: 10.0.2.5
+Transmission Control Protocol, Src Port: 50346, Dst Port: 22, Seq: 1024764751, Ack: 2209584705, Len: 0
+
+No.     Time                          Source                Destination           Protocol Length Info
+     27 2020-11-14 01:06:15.409842589 10.0.2.5              10.0.2.4              SSH      102    Server: Encrypted packet (len=36)
+
+Frame 27: 102 bytes on wire (816 bits), 102 bytes captured (816 bits) on interface 0
+Ethernet II, Src: PcsCompu_88:41:5d (08:00:27:88:41:5d), Dst: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc)
+Internet Protocol Version 4, Src: 10.0.2.5, Dst: 10.0.2.4
+Transmission Control Protocol, Src Port: 22, Dst Port: 50346, Seq: 2209584705, Ack: 1024764751, Len: 36
+SSH Protocol
+
+No.     Time                          Source                Destination           Protocol Length Info
+     28 2020-11-14 01:06:15.409849551 10.0.2.4              10.0.2.5              TCP      66     50346 → 22 [ACK] Seq=1024764751 Ack=2209584741 Win=427 Len=0 TSval=675307 TSecr=5495176
+
+Frame 28: 66 bytes on wire (528 bits), 66 bytes captured (528 bits) on interface 0
+Ethernet II, Src: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc), Dst: PcsCompu_88:41:5d (08:00:27:88:41:5d)
+Internet Protocol Version 4, Src: 10.0.2.4, Dst: 10.0.2.5
+Transmission Control Protocol, Src Port: 50346, Dst Port: 22, Seq: 1024764751, Ack: 2209584741, Len: 0
+
+No.     Time                          Source                Destination           Protocol Length Info
+     29 2020-11-14 01:06:16.433367298 10.0.2.6              10.0.2.4              ICMP     98     Echo (ping) request  id=0x0b42, seq=4/1024, ttl=64 (reply in 30)
+
+Frame 29: 98 bytes on wire (784 bits), 98 bytes captured (784 bits) on interface 0
+Ethernet II, Src: PcsCompu_6a:ba:95 (08:00:27:6a:ba:95), Dst: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc)
+Internet Protocol Version 4, Src: 10.0.2.6, Dst: 10.0.2.4
+Internet Control Message Protocol
+
+No.     Time                          Source                Destination           Protocol Length Info
+     30 2020-11-14 01:06:16.433427082 10.0.2.4              10.0.2.6              ICMP     98     Echo (ping) reply    id=0x0b42, seq=4/1024, ttl=64 (request in 29)
+
+Frame 30: 98 bytes on wire (784 bits), 98 bytes captured (784 bits) on interface 0
+Ethernet II, Src: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc), Dst: PcsCompu_6a:ba:95 (08:00:27:6a:ba:95)
+Internet Protocol Version 4, Src: 10.0.2.4, Dst: 10.0.2.6
+Internet Control Message Protocol
+
+No.     Time                          Source                Destination           Protocol Length Info
+     31 2020-11-14 01:06:16.434419243 10.0.2.5              10.0.2.4              SSH      158    Server: Encrypted packet (len=92)
+
+Frame 31: 158 bytes on wire (1264 bits), 158 bytes captured (1264 bits) on interface 0
+Ethernet II, Src: PcsCompu_88:41:5d (08:00:27:88:41:5d), Dst: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc)
+Internet Protocol Version 4, Src: 10.0.2.5, Dst: 10.0.2.4
+Transmission Control Protocol, Src Port: 22, Dst Port: 50346, Seq: 2209584741, Ack: 1024764751, Len: 92
+SSH Protocol
+
+No.     Time                          Source                Destination           Protocol Length Info
+     32 2020-11-14 01:06:16.434464917 10.0.2.4              10.0.2.5              TCP      66     50346 → 22 [ACK] Seq=1024764751 Ack=2209584833 Win=427 Len=0 TSval=675564 TSecr=5495433
+
+Frame 32: 66 bytes on wire (528 bits), 66 bytes captured (528 bits) on interface 0
+Ethernet II, Src: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc), Dst: PcsCompu_88:41:5d (08:00:27:88:41:5d)
+Internet Protocol Version 4, Src: 10.0.2.4, Dst: 10.0.2.5
+Transmission Control Protocol, Src Port: 50346, Dst Port: 22, Seq: 1024764751, Ack: 2209584833, Len: 0
+
+No.     Time                          Source                Destination           Protocol Length Info
+     33 2020-11-14 01:06:17.457230960 10.0.2.6              10.0.2.4              ICMP     98     Echo (ping) request  id=0x0b42, seq=5/1280, ttl=64 (reply in 34)
+
+Frame 33: 98 bytes on wire (784 bits), 98 bytes captured (784 bits) on interface 0
+Ethernet II, Src: PcsCompu_6a:ba:95 (08:00:27:6a:ba:95), Dst: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc)
+Internet Protocol Version 4, Src: 10.0.2.6, Dst: 10.0.2.4
+Internet Control Message Protocol
+
+No.     Time                          Source                Destination           Protocol Length Info
+     34 2020-11-14 01:06:17.457283339 10.0.2.4              10.0.2.6              ICMP     98     Echo (ping) reply    id=0x0b42, seq=5/1280, ttl=64 (request in 33)
+
+Frame 34: 98 bytes on wire (784 bits), 98 bytes captured (784 bits) on interface 0
+Ethernet II, Src: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc), Dst: PcsCompu_6a:ba:95 (08:00:27:6a:ba:95)
+Internet Protocol Version 4, Src: 10.0.2.4, Dst: 10.0.2.6
+Internet Control Message Protocol
+
+No.     Time                          Source                Destination           Protocol Length Info
+     35 2020-11-14 01:06:17.458090009 10.0.2.5              10.0.2.4              SSH      158    Server: Encrypted packet (len=92)
+
+Frame 35: 158 bytes on wire (1264 bits), 158 bytes captured (1264 bits) on interface 0
+Ethernet II, Src: PcsCompu_88:41:5d (08:00:27:88:41:5d), Dst: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc)
+Internet Protocol Version 4, Src: 10.0.2.5, Dst: 10.0.2.4
+Transmission Control Protocol, Src Port: 22, Dst Port: 50346, Seq: 2209584833, Ack: 1024764751, Len: 92
+SSH Protocol
+
+No.     Time                          Source                Destination           Protocol Length Info
+     36 2020-11-14 01:06:17.458113204 10.0.2.4              10.0.2.5              TCP      66     50346 → 22 [ACK] Seq=1024764751 Ack=2209584925 Win=427 Len=0 TSval=675819 TSecr=5495689
+
+Frame 36: 66 bytes on wire (528 bits), 66 bytes captured (528 bits) on interface 0
+Ethernet II, Src: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc), Dst: PcsCompu_88:41:5d (08:00:27:88:41:5d)
+Internet Protocol Version 4, Src: 10.0.2.4, Dst: 10.0.2.5
+Transmission Control Protocol, Src Port: 50346, Dst Port: 22, Seq: 1024764751, Ack: 2209584925, Len: 0
+
+No.     Time                          Source                Destination           Protocol Length Info
+     37 2020-11-14 01:06:17.458341013 10.0.2.5              10.0.2.4              SSH      102    Server: Encrypted packet (len=36)
+
+Frame 37: 102 bytes on wire (816 bits), 102 bytes captured (816 bits) on interface 0
+Ethernet II, Src: PcsCompu_88:41:5d (08:00:27:88:41:5d), Dst: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc)
+Internet Protocol Version 4, Src: 10.0.2.5, Dst: 10.0.2.4
+Transmission Control Protocol, Src Port: 22, Dst Port: 50346, Seq: 2209584925, Ack: 1024764751, Len: 36
+SSH Protocol
+
+No.     Time                          Source                Destination           Protocol Length Info
+     38 2020-11-14 01:06:17.458350021 10.0.2.4              10.0.2.5              TCP      66     50346 → 22 [ACK] Seq=1024764751 Ack=2209584961 Win=427 Len=0 TSval=675819 TSecr=5495689
+
+Frame 38: 66 bytes on wire (528 bits), 66 bytes captured (528 bits) on interface 0
+Ethernet II, Src: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc), Dst: PcsCompu_88:41:5d (08:00:27:88:41:5d)
+Internet Protocol Version 4, Src: 10.0.2.4, Dst: 10.0.2.5
+Transmission Control Protocol, Src Port: 50346, Dst Port: 22, Seq: 1024764751, Ack: 2209584961, Len: 0
+
+No.     Time                          Source                Destination           Protocol Length Info
+     39 2020-11-14 01:06:18.481375375 10.0.2.6              10.0.2.4              ICMP     98     Echo (ping) request  id=0x0b42, seq=6/1536, ttl=64 (reply in 40)
+
+Frame 39: 98 bytes on wire (784 bits), 98 bytes captured (784 bits) on interface 0
+Ethernet II, Src: PcsCompu_6a:ba:95 (08:00:27:6a:ba:95), Dst: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc)
+Internet Protocol Version 4, Src: 10.0.2.6, Dst: 10.0.2.4
+Internet Control Message Protocol
+
+No.     Time                          Source                Destination           Protocol Length Info
+     40 2020-11-14 01:06:18.481437635 10.0.2.4              10.0.2.6              ICMP     98     Echo (ping) reply    id=0x0b42, seq=6/1536, ttl=64 (request in 39)
+
+Frame 40: 98 bytes on wire (784 bits), 98 bytes captured (784 bits) on interface 0
+Ethernet II, Src: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc), Dst: PcsCompu_6a:ba:95 (08:00:27:6a:ba:95)
+Internet Protocol Version 4, Src: 10.0.2.4, Dst: 10.0.2.6
+Internet Control Message Protocol
+
+No.     Time                          Source                Destination           Protocol Length Info
+     41 2020-11-14 01:06:18.482286521 10.0.2.5              10.0.2.4              SSH      158    Server: Encrypted packet (len=92)
+
+Frame 41: 158 bytes on wire (1264 bits), 158 bytes captured (1264 bits) on interface 0
+Ethernet II, Src: PcsCompu_88:41:5d (08:00:27:88:41:5d), Dst: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc)
+Internet Protocol Version 4, Src: 10.0.2.5, Dst: 10.0.2.4
+Transmission Control Protocol, Src Port: 22, Dst Port: 50346, Seq: 2209584961, Ack: 1024764751, Len: 92
+SSH Protocol
+
+No.     Time                          Source                Destination           Protocol Length Info
+     42 2020-11-14 01:06:18.482333360 10.0.2.4              10.0.2.5              TCP      66     50346 → 22 [ACK] Seq=1024764751 Ack=2209585053 Win=427 Len=0 TSval=676075 TSecr=5495945
+
+Frame 42: 66 bytes on wire (528 bits), 66 bytes captured (528 bits) on interface 0
+Ethernet II, Src: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc), Dst: PcsCompu_88:41:5d (08:00:27:88:41:5d)
+Internet Protocol Version 4, Src: 10.0.2.4, Dst: 10.0.2.5
+Transmission Control Protocol, Src Port: 50346, Dst Port: 22, Seq: 1024764751, Ack: 2209585053, Len: 0
+
+No.     Time                          Source                Destination           Protocol Length Info
+     43 2020-11-14 01:06:18.482703439 10.0.2.5              10.0.2.4              SSH      102    Server: Encrypted packet (len=36)
+
+Frame 43: 102 bytes on wire (816 bits), 102 bytes captured (816 bits) on interface 0
+Ethernet II, Src: PcsCompu_88:41:5d (08:00:27:88:41:5d), Dst: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc)
+Internet Protocol Version 4, Src: 10.0.2.5, Dst: 10.0.2.4
+Transmission Control Protocol, Src Port: 22, Dst Port: 50346, Seq: 2209585053, Ack: 1024764751, Len: 36
+SSH Protocol
+
+No.     Time                          Source                Destination           Protocol Length Info
+     44 2020-11-14 01:06:18.482712247 10.0.2.4              10.0.2.5              TCP      66     50346 → 22 [ACK] Seq=1024764751 Ack=2209585089 Win=427 Len=0 TSval=676076 TSecr=5495945
+
+Frame 44: 66 bytes on wire (528 bits), 66 bytes captured (528 bits) on interface 0
+Ethernet II, Src: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc), Dst: PcsCompu_88:41:5d (08:00:27:88:41:5d)
+Internet Protocol Version 4, Src: 10.0.2.4, Dst: 10.0.2.5
+Transmission Control Protocol, Src Port: 50346, Dst Port: 22, Seq: 1024764751, Ack: 2209585089, Len: 0
+
+No.     Time                          Source                Destination           Protocol Length Info
+     45 2020-11-14 01:06:18.562437369 PcsCompu_2f:0d:dc     PcsCompu_6a:ba:95     ARP      42     Who has 10.0.2.6? Tell 10.0.2.4
+
+Frame 45: 42 bytes on wire (336 bits), 42 bytes captured (336 bits) on interface 0
+Ethernet II, Src: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc), Dst: PcsCompu_6a:ba:95 (08:00:27:6a:ba:95)
+Address Resolution Protocol (request)
+
+No.     Time                          Source                Destination           Protocol Length Info
+     46 2020-11-14 01:06:18.562708409 PcsCompu_6a:ba:95     PcsCompu_2f:0d:dc     ARP      60     10.0.2.6 is at 08:00:27:6a:ba:95
+
+Frame 46: 60 bytes on wire (480 bits), 60 bytes captured (480 bits) on interface 0
+Ethernet II, Src: PcsCompu_6a:ba:95 (08:00:27:6a:ba:95), Dst: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc)
+Address Resolution Protocol (reply)
+
+No.     Time                          Source                Destination           Protocol Length Info
+     47 2020-11-14 01:06:19.505573023 10.0.2.6              10.0.2.4              ICMP     98     Echo (ping) request  id=0x0b42, seq=7/1792, ttl=64 (reply in 48)
+
+Frame 47: 98 bytes on wire (784 bits), 98 bytes captured (784 bits) on interface 0
+Ethernet II, Src: PcsCompu_6a:ba:95 (08:00:27:6a:ba:95), Dst: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc)
+Internet Protocol Version 4, Src: 10.0.2.6, Dst: 10.0.2.4
+Internet Control Message Protocol
+
+No.     Time                          Source                Destination           Protocol Length Info
+     48 2020-11-14 01:06:19.505625722 10.0.2.4              10.0.2.6              ICMP     98     Echo (ping) reply    id=0x0b42, seq=7/1792, ttl=64 (request in 47)
+
+Frame 48: 98 bytes on wire (784 bits), 98 bytes captured (784 bits) on interface 0
+Ethernet II, Src: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc), Dst: PcsCompu_6a:ba:95 (08:00:27:6a:ba:95)
+Internet Protocol Version 4, Src: 10.0.2.4, Dst: 10.0.2.6
+Internet Control Message Protocol
+
+No.     Time                          Source                Destination           Protocol Length Info
+     49 2020-11-14 01:06:19.506464769 10.0.2.5              10.0.2.4              SSH      158    Server: Encrypted packet (len=92)
+
+Frame 49: 158 bytes on wire (1264 bits), 158 bytes captured (1264 bits) on interface 0
+Ethernet II, Src: PcsCompu_88:41:5d (08:00:27:88:41:5d), Dst: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc)
+Internet Protocol Version 4, Src: 10.0.2.5, Dst: 10.0.2.4
+Transmission Control Protocol, Src Port: 22, Dst Port: 50346, Seq: 2209585089, Ack: 1024764751, Len: 92
+SSH Protocol
+
+No.     Time                          Source                Destination           Protocol Length Info
+     50 2020-11-14 01:06:19.506486708 10.0.2.4              10.0.2.5              TCP      66     50346 → 22 [ACK] Seq=1024764751 Ack=2209585181 Win=427 Len=0 TSval=676332 TSecr=5496201
+
+Frame 50: 66 bytes on wire (528 bits), 66 bytes captured (528 bits) on interface 0
+Ethernet II, Src: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc), Dst: PcsCompu_88:41:5d (08:00:27:88:41:5d)
+Internet Protocol Version 4, Src: 10.0.2.4, Dst: 10.0.2.5
+Transmission Control Protocol, Src Port: 50346, Dst Port: 22, Seq: 1024764751, Ack: 2209585181, Len: 0
+
+No.     Time                          Source                Destination           Protocol Length Info
+     51 2020-11-14 01:06:19.568253093 10.0.2.4              10.0.2.5              SSH      102    Client: Encrypted packet (len=36)
+
+Frame 51: 102 bytes on wire (816 bits), 102 bytes captured (816 bits) on interface 0
+Ethernet II, Src: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc), Dst: PcsCompu_88:41:5d (08:00:27:88:41:5d)
+Internet Protocol Version 4, Src: 10.0.2.4, Dst: 10.0.2.5
+Transmission Control Protocol, Src Port: 50346, Dst Port: 22, Seq: 1024764751, Ack: 2209585181, Len: 36
+SSH Protocol
+
+No.     Time                          Source                Destination           Protocol Length Info
+     52 2020-11-14 01:06:19.570893252 10.0.2.5              10.0.2.4              SSH      110    Server: Encrypted packet (len=44)
+
+Frame 52: 110 bytes on wire (880 bits), 110 bytes captured (880 bits) on interface 0
+Ethernet II, Src: PcsCompu_88:41:5d (08:00:27:88:41:5d), Dst: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc)
+Internet Protocol Version 4, Src: 10.0.2.5, Dst: 10.0.2.4
+Transmission Control Protocol, Src Port: 22, Dst Port: 50346, Seq: 2209585181, Ack: 1024764787, Len: 44
+SSH Protocol
+
+No.     Time                          Source                Destination           Protocol Length Info
+     53 2020-11-14 01:06:19.570951799 10.0.2.4              10.0.2.5              TCP      66     50346 → 22 [ACK] Seq=1024764787 Ack=2209585225 Win=427 Len=0 TSval=676348 TSecr=5496217
+
+Frame 53: 66 bytes on wire (528 bits), 66 bytes captured (528 bits) on interface 0
+Ethernet II, Src: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc), Dst: PcsCompu_88:41:5d (08:00:27:88:41:5d)
+Internet Protocol Version 4, Src: 10.0.2.4, Dst: 10.0.2.5
+Transmission Control Protocol, Src Port: 50346, Dst Port: 22, Seq: 1024764787, Ack: 2209585225, Len: 0
+
+No.     Time                          Source                Destination           Protocol Length Info
+     54 2020-11-14 01:06:19.571077568 10.0.2.5              10.0.2.4              SSH      254    Server: Encrypted packet (len=188)
+
+Frame 54: 254 bytes on wire (2032 bits), 254 bytes captured (2032 bits) on interface 0
+Ethernet II, Src: PcsCompu_88:41:5d (08:00:27:88:41:5d), Dst: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc)
+Internet Protocol Version 4, Src: 10.0.2.5, Dst: 10.0.2.4
+Transmission Control Protocol, Src Port: 22, Dst Port: 50346, Seq: 2209585225, Ack: 1024764787, Len: 188
+SSH Protocol
+
+No.     Time                          Source                Destination           Protocol Length Info
+     55 2020-11-14 01:06:19.571132934 10.0.2.4              10.0.2.5              TCP      66     50346 → 22 [ACK] Seq=1024764787 Ack=2209585413 Win=442 Len=0 TSval=676348 TSecr=5496217
+
+Frame 55: 66 bytes on wire (528 bits), 66 bytes captured (528 bits) on interface 0
+Ethernet II, Src: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc), Dst: PcsCompu_88:41:5d (08:00:27:88:41:5d)
+Internet Protocol Version 4, Src: 10.0.2.4, Dst: 10.0.2.5
+Transmission Control Protocol, Src Port: 50346, Dst Port: 22, Seq: 1024764787, Ack: 2209585413, Len: 0
+
+No.     Time                          Source                Destination           Protocol Length Info
+     56 2020-11-14 01:06:19.576248362 10.0.2.5              10.0.2.4              SSH      126    Server: Encrypted packet (len=60)
+
+Frame 56: 126 bytes on wire (1008 bits), 126 bytes captured (1008 bits) on interface 0
+Ethernet II, Src: PcsCompu_88:41:5d (08:00:27:88:41:5d), Dst: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc)
+Internet Protocol Version 4, Src: 10.0.2.5, Dst: 10.0.2.4
+Transmission Control Protocol, Src Port: 22, Dst Port: 50346, Seq: 2209585413, Ack: 1024764787, Len: 60
+SSH Protocol
+
+No.     Time                          Source                Destination           Protocol Length Info
+     57 2020-11-14 01:06:19.576331725 10.0.2.4              10.0.2.5              TCP      66     50346 → 22 [ACK] Seq=1024764787 Ack=2209585473 Win=442 Len=0 TSval=676349 TSecr=5496218
+
+Frame 57: 66 bytes on wire (528 bits), 66 bytes captured (528 bits) on interface 0
+Ethernet II, Src: PcsCompu_2f:0d:dc (08:00:27:2f:0d:dc), Dst: PcsCompu_88:41:5d (08:00:27:88:41:5d)
+Internet Protocol Version 4, Src: 10.0.2.4, Dst: 10.0.2.5
+Transmission Control Protocol, Src Port: 50346, Dst Port: 22, Seq: 1024764787, Ack: 2209585473, Len: 0

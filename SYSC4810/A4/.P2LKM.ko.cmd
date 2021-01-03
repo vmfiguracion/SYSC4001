@@ -1,0 +1,1 @@
+cmd_/home/seed/SYSC4810/A4/P2LKM.ko := ld -r -m elf_i386 -T ./scripts/module-common.lds --build-id  -o /home/seed/SYSC4810/A4/P2LKM.ko /home/seed/SYSC4810/A4/P2LKM.o /home/seed/SYSC4810/A4/P2LKM.mod.o

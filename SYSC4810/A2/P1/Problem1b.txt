@@ -1,0 +1,25 @@
+To encrypt using AES-128 bit CBC: 
+$ openssl enc -aes-128-cbc -in P1.txt -out P1cbc.txt -K 0123456789ABCDEF -iv ABCDEF
+
+To encrypt using AES-192 bit CBC:
+$ openssl enc -aes-192-cbc -in P1.txt -out P1cbc192.txt -K 0123456789ABCDEF -iv ABCDEF
+
+To encrypt using AES-256 bit CBC:
+$ openssl enc -aes-192-cbc -in P1.txt -out P1cbc256.txt -K 0123456789ABCDEF -iv ABCDEF
+
+To encrypt using DES CBC:
+$ openssl enc -des -in P1.txt -out P1descbc.txt -K 0123456789ABCDEF -iv ABCDEF
+
+To encrypt using 3DES CBC:
+$ openssl enc -des3 -in P1.txt -out P13descbc.txt -K 0123456789ABCDEF -iv ABCDEF
+
+To encrypt using AES-128 bit CFB:
+$ openssl enc -aes-192-cfb -in P1.txt -out P1cfb128.txt -K 0123456789ABCDEF -iv ABCDEF
+
+To encrypt using AES-128 bit ECB:
+$ openssl enc -aes-256-ecb -in P1.txt -out P1ecb128.txt -K 0123456789ABCDEF
+
+Key: 0123456789ABCDEF
+IV: ABCDEF
+
+
